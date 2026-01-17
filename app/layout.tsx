@@ -21,8 +21,8 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Slice Town - Best Pizza in Town",
-  description: "Delicious handcrafted pizzas made with love",
+  title: "Apna Food - Authentic Indian Catering",
+  description: "Delicious handcrafted Indian cuisine made with love",
 };
 
 export default function RootLayout({

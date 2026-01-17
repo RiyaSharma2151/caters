@@ -58,7 +58,7 @@ export default function Location() {
                         HUNGRY YET?
                     </h3>
                     <p className="text-2xl font-body text-pizza-black mb-8">
-                        Order now and get your pizza delivered hot & fresh!
+                        Book us for your next event and enjoy authentic Indian flavors!
                     </p>
                     <Link href="/book" className="neo-button bg-pizza-red text-white px-16 py-5 text-2xl inline-block">
                         Book Now

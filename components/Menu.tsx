@@ -7,23 +7,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const menuItems = {
-    veg: [
-        { name: 'Margherita', price: '$12', desc: 'Classic tomato, mozzarella & basil' },
-        { name: 'Veggie Supreme', price: '$14', desc: 'Peppers, mushrooms, olives & onions' },
-        { name: 'Four Cheese', price: '$15', desc: 'Mozzarella, parmesan, gorgonzola & ricotta' },
+    curries: [
+        { name: 'Butter Chicken', price: '$16', desc: 'Creamy tomato curry with tender chicken' },
+        { name: 'Paneer Tikka Masala', price: '$14', desc: 'Grilled cottage cheese in spiced gravy' },
+        { name: 'Dal Makhani', price: '$12', desc: 'Slow-cooked black lentils with butter & cream' },
     ],
-    nonVeg: [
-        { name: 'Pepperoni Classic', price: '$14', desc: 'Loaded with pepperoni & cheese' },
-        { name: 'BBQ Chicken', price: '$16', desc: 'Grilled chicken, BBQ sauce & red onions' },
-        { name: 'Meat Lovers', price: '$18', desc: 'Pepperoni, sausage, bacon & ham' },
+    breads: [
+        { name: 'Garlic Naan', price: '$4', desc: 'Soft bread topped with garlic & cilantro' },
+        { name: 'Butter Roti', price: '$3', desc: 'Whole wheat flatbread brushed with butter' },
+        { name: 'Stuffed Paratha', price: '$6', desc: 'Potato or paneer stuffed grilled bread' },
     ],
-    desserts: [
-        { name: 'Nutella Pizza', price: '$10', desc: 'Sweet pizza with Nutella & strawberries' },
-        { name: 'Tiramisu', price: '$8', desc: 'Classic Italian dessert' },
+    rice: [
+        { name: 'Chicken Biryani', price: '$15', desc: 'Aromatic basmati rice with spiced chicken' },
+        { name: 'Jeera Rice', price: '$8', desc: 'Cumin flavored basmati rice' },
     ],
-    drinks: [
-        { name: 'Craft Soda', price: '$4', desc: 'Various flavors' },
-        { name: 'Fresh Lemonade', price: '$5', desc: 'Homemade & refreshing' },
+    streetFood: [
+        { name: 'Samosa Chat', price: '$8', desc: 'Crushed samosas with chutneys & yogurt' },
+        { name: 'Pani Puri', price: '$6', desc: 'Crispy hollow shells with spiced water' },
     ],
 };
 
@@ -57,20 +57,20 @@ export default function Menu() {
             <section id="menu" className="py-32 px-6 bg-pizza-black text-pizza-white">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-6xl md:text-8xl font-heading font-black mb-4 text-center">
-                        OUR MENU
+                        CATERING MENU
                     </h2>
                     <p className="text-2xl font-body text-center mb-16 text-pizza-yellow">
-                        Handcrafted with love 🍕
+                        Authentic Indian Flavors 🍛
                     </p>
 
                     <div ref={menuRef} className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {/* Veg Pizzas */}
+                        {/* Curries */}
                         <div className="menu-card neo-border neo-shadow bg-pizza-green p-8">
                             <h3 className="text-4xl font-heading font-black mb-6 text-pizza-black">
-                                🌱 VEG PIZZAS
+                                🍲 CURRIES
                             </h3>
                             <div className="space-y-4">
-                                {menuItems.veg.map((item, index) => (
+                                {menuItems.curries.map((item, index) => (
                                     <div key={index} className="border-b-2 border-pizza-black pb-3">
                                         <div className="flex justify-between items-start mb-1">
                                             <h4 className="text-xl font-bold text-pizza-black">{item.name}</h4>
@@ -82,13 +82,13 @@ export default function Menu() {
                             </div>
                         </div>
 
-                        {/* Non-Veg Pizzas */}
+                        {/* Breads */}
                         <div className="menu-card neo-border neo-shadow bg-pizza-red p-8">
                             <h3 className="text-4xl font-heading font-black mb-6 text-pizza-white">
-                                🍖 NON-VEG PIZZAS
+                                🥖 BREADS
                             </h3>
                             <div className="space-y-4">
-                                {menuItems.nonVeg.map((item, index) => (
+                                {menuItems.breads.map((item, index) => (
                                     <div key={index} className="border-b-2 border-pizza-white pb-3">
                                         <div className="flex justify-between items-start mb-1">
                                             <h4 className="text-xl font-bold text-pizza-white">{item.name}</h4>
@@ -100,13 +100,13 @@ export default function Menu() {
                             </div>
                         </div>
 
-                        {/* Desserts */}
+                        {/* Rice */}
                         <div className="menu-card neo-border neo-shadow bg-pizza-yellow p-8">
                             <h3 className="text-4xl font-heading font-black mb-6 text-pizza-black">
-                                🍰 DESSERTS
+                                🍚 RICE & BIRYANI
                             </h3>
                             <div className="space-y-4">
-                                {menuItems.desserts.map((item, index) => (
+                                {menuItems.rice.map((item, index) => (
                                     <div key={index} className="border-b-2 border-pizza-black pb-3">
                                         <div className="flex justify-between items-start mb-1">
                                             <h4 className="text-xl font-bold text-pizza-black">{item.name}</h4>
@@ -118,13 +118,13 @@ export default function Menu() {
                             </div>
                         </div>
 
-                        {/* Drinks */}
+                        {/* Street Food */}
                         <div className="menu-card neo-border neo-shadow bg-pizza-orange p-8">
                             <h3 className="text-4xl font-heading font-black mb-6 text-pizza-white">
-                                🥤 DRINKS
+                                🥟 STREET FOOD
                             </h3>
                             <div className="space-y-4">
-                                {menuItems.drinks.map((item, index) => (
+                                {menuItems.streetFood.map((item, index) => (
                                     <div key={index} className="border-b-2 border-pizza-white pb-3">
                                         <div className="flex justify-between items-start mb-1">
                                             <h4 className="text-xl font-bold text-pizza-white">{item.name}</h4>

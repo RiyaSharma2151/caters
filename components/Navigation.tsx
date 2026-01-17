@@ -130,10 +130,10 @@ export default function Navigation() {
                 >
                     <div className="w-24 h-24 rounded-full bg-pizza-black border-4 border-pizza-yellow flex flex-col items-center justify-center -rotate-6 shadow-xl relative z-50">
                         <span className="font-heading font-black text-pizza-yellow text-xl leading-none transform -rotate-6">
-                            Slice
+                            Apna
                         </span>
                         <span className="font-heading font-black text-pizza-yellow text-xl leading-none transform -rotate-6">
-                            Town
+                            Food
                         </span>
                     </div>
                 </Link>

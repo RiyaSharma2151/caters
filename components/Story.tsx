@@ -122,24 +122,23 @@ export default function Story() {
                     <div className="space-y-8">
                         <div className="neo-border neo-shadow bg-pizza-white p-8 md:p-12">
                             <p className="text-2xl md:text-3xl font-body font-bold text-pizza-black leading-relaxed">
-                                Born in the heart of the city, Slice Town started with a simple dream:{' '}
-                                <span className="text-pizza-red">to serve the most delicious pizza</span>{' '}
-                                you've ever tasted.
+                                Bringing the authentic taste of India to your plate, Apna Food started with a simple belief:{' '}
+                                <span className="text-pizza-red">food is the language of love</span>.
                             </p>
                         </div>
 
                         <div className="neo-border neo-shadow bg-pizza-yellow p-8 md:p-12 rotate-1">
                             <p className="text-xl md:text-2xl font-body text-pizza-black leading-relaxed">
-                                We use only the <strong>freshest ingredients</strong>, hand-tossed dough made daily,
-                                and secret family recipes passed down through generations. Every pizza is crafted
-                                with love and baked to perfection in our traditional stone oven.
+                                We use only the <strong>finest spices</strong>, fresh locally sourced ingredients,
+                                and traditional recipes passed down through generations. Every dish is cooked
+                                with passion and served with the warmth of Indian hospitality.
                             </p>
                         </div>
 
                         <div className="neo-border neo-shadow bg-pizza-white p-8 md:p-12 -rotate-1">
                             <p className="text-xl md:text-2xl font-body text-pizza-black leading-relaxed">
-                                Today, we're proud to serve our community with the same passion and dedication
-                                that started it all. <strong>Welcome to the family!</strong> 🍕❤️
+                                From intimate gatherings to grand weddings, we turn every event into a
+                                flavorful celebration. <strong>Welcome to the Apna Food family!</strong> 🍲❤️
                             </p>
                         </div>
                     </div>

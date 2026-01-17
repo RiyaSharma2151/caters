@@ -8,11 +8,11 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <h3 className="text-4xl font-heading font-black mb-4">
-                            <span className="text-pizza-red">SLICE</span>
-                            <span className="text-pizza-white"> TOWN</span>
+                            <span className="text-pizza-red">APNA</span>
+                            <span className="text-pizza-white"> FOOD</span>
                         </h3>
                         <p className="font-body text-pizza-white/80">
-                            Serving the best pizza in town since 2020. Made with love, served with passion.
+                            Serving the best Indian cuisine in town since 2020. Made with love, served with spice.
                         </p>
                     </div>
 
@@ -56,7 +56,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="border-t-2 border-pizza-white/20 pt-8 text-center font-body text-pizza-white/60">
-                    <p>&copy; 2024 Slice Town. All rights reserved. Made with 🍕 and ❤️</p>
+                    <p>&copy; 2024 Apna Food. All rights reserved. Made with 🍲 and ❤️</p>
                 </div>
             </div>
         </footer>

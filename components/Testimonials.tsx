@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
 const testimonials = [
-    { name: 'Sarah M.', text: 'Best pizza in town! The crust is perfection! 🍕', rating: 5, color: 'bg-pizza-yellow', rotation: -3, x: -20, y: 10 },
-    { name: 'Mike R.', text: 'Amazing flavors and super fresh ingredients!', rating: 5, color: 'bg-pizza-green', rotation: 2, x: 50, y: -30 },
-    { name: 'Emily K.', text: 'My family\'s favorite pizza place! ❤️', rating: 5, color: 'bg-pizza-orange', rotation: -2, x: -40, y: 40 },
-    { name: 'David L.', text: 'The BBQ chicken pizza is incredible!', rating: 5, color: 'bg-pink-300', rotation: 3, x: 30, y: 0 },
-    { name: 'Lisa P.', text: 'Great service and delicious food!', rating: 5, color: 'bg-purple-300', rotation: -4, x: -10, y: -50 },
+    { name: 'Sarah M.', text: 'Best butter chicken in town! The flavor is authentic! 🥘', rating: 5, color: 'bg-pizza-yellow', rotation: -3, x: -20, y: 10 },
+    { name: 'Mike R.', text: 'Amazing biryani and super fresh naan!', rating: 5, color: 'bg-pizza-green', rotation: 2, x: 50, y: -30 },
+    { name: 'Emily K.', text: 'My family\'s favorite catering service! ❤️', rating: 5, color: 'bg-pizza-orange', rotation: -2, x: -40, y: 40 },
+    { name: 'David L.', text: 'The samosa chaat is incredible!', rating: 5, color: 'bg-pink-300', rotation: 3, x: 30, y: 0 },
+    { name: 'Lisa P.', text: 'Great service and delicious gulab jamun!', rating: 5, color: 'bg-purple-300', rotation: -4, x: -10, y: -50 },
     { name: 'Tom W.', text: 'Can\'t stop ordering from here! 🔥', rating: 5, color: 'bg-blue-300', rotation: 1, x: 40, y: 60 },
 ];
 

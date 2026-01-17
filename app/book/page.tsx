@@ -12,8 +12,8 @@ export default function BookingPage() {
                         ← Back Home
                     </Link>
                     <div className="text-2xl font-heading font-black">
-                        <span className="text-pizza-red">SLICE</span>
-                        <span className="text-pizza-black"> TOWN</span>
+                        <span className="text-pizza-red">APNA</span>
+                        <span className="text-pizza-black"> FOOD</span>
                     </div>
                 </div>
 
