@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-
 const STAND_IMAGES = [
     '/images/stand1.png',
     '/images/stand2.png',
@@ -38,9 +37,12 @@ export default function MenuStand() {
 
     // Auto-advance functionality (optional, but good for sliders)
     useEffect(() => {
+        // Pause auto-advance when lightbox is open
+        if (isLightboxOpen) return;
+
         const timer = setInterval(handleNext, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [isLightboxOpen]);
 
     // Lock body scroll when lightbox is open
     useEffect(() => {
@@ -57,77 +59,99 @@ export default function MenuStand() {
     const currentMenuImage = MENU_IMAGES[currentIndex];
 
     return (
-        <section className="py-16 px-4 md:py-32 bg-pizza-green overflow-hidden relative min-h-screen flex flex-col items-center justify-center">
-            {/* Background Text/Decor could go here */}
+        <section className="py-20 px-4 md:py-32 bg-pizza-green overflow-hidden relative min-h-screen flex flex-col items-center justify-center">
+            {/* Background Texture */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none checkered-bg"></div>
+
+            {/* Decorative Floating Elements */}
+            <div className="absolute top-20 left-10 md:left-20 w-16 h-16 bg-pizza-yellow rounded-full neo-border animate-float opacity-80 z-0"></div>
+            <div className="absolute bottom-20 right-10 md:right-32 w-20 h-20 bg-pizza-red rotate-12 neo-border animate-float opacity-80 z-0" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute top-1/2 left-4 md:left-32 w-12 h-12 bg-pizza-orange rotate-45 neo-border animate-rotate opacity-80 z-0"></div>
 
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="max-w-7xl mx-auto flex flex-col items-center w-full z-10"
+                className="max-w-7xl mx-auto flex flex-col items-center w-full z-10 relative"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black text-pizza-white mb-8 md:mb-16 text-center drop-shadow-lg">
-                    TODAY'S SPECIALS
+                {/* Badge */}
+                <div className="absolute -top-12 md:-top-16 right-4 md:right-1/4 rotate-12 z-20">
+                    <div className="bg-pizza-yellow text-pizza-black font-handwriting font-bold text-2xl md:text-3xl px-6 py-3 neo-border neo-shadow-sm rotate-6 hover:rotate-12 transition-transform cursor-default">
+                        Fresh & Hot!
+                    </div>
+                </div>
+
+                <h2 className="text-5xl md:text-7xl lg:text-9xl font-heading font-black text-pizza-white mb-4 text-center drop-shadow-lg relative">
+                    <span className="relative z-10">TODAY'S SPECIALS</span>
+                    <span className="absolute left-1 top-1 text-transparent [-webkit-text-stroke:2px_var(--pizza-black)] -z-10">TODAY'S SPECIALS</span>
                 </h2>
+
+                <p className="font-body text-xl md:text-2xl text-pizza-cream mb-12 text-center max-w-2xl font-bold bg-pizza-black/20 p-4 rounded-xl border-2 border-pizza-black/10 backdrop-blur-sm">
+                    Straight from the oven to your heart. Crunchy, cheesy, and impossible to resist.
+                </p>
 
                 <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] flex items-center justify-center">
 
                     {/* Navigation Buttons */}
                     <button
                         onClick={handlePrev}
-                        className="absolute left-[-20px] md:left-[-60px] top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all text-white border border-white/20 hover:scale-110"
+                        className="absolute left-[-30px] md:left-[-80px] top-1/2 -translate-y-1/2 z-30 p-4 bg-pizza-white neo-button rounded-full text-pizza-black hover:bg-pizza-cream hover:scale-110"
                         aria-label="Previous special"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
                     </button>
 
                     <button
                         onClick={handleNext}
-                        className="absolute right-[-20px] md:right-[-60px] top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all text-white border border-white/20 hover:scale-110"
+                        className="absolute right-[-30px] md:right-[-80px] top-1/2 -translate-y-1/2 z-30 p-4 bg-pizza-white neo-button rounded-full text-pizza-black hover:bg-pizza-cream hover:scale-110"
                         aria-label="Next special"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
                     </button>
 
-                    {/* Slider Container */}
-                    <div className="relative w-full h-full cursor-pointer group perspective-1000" onClick={openLightbox}>
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={currentIndex}
-                                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
-                                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                                exit={{ opacity: 0, scale: 0.9, rotateY: -15 }}
-                                transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="absolute inset-0 w-full h-full"
-                            >
-                                <div className="relative w-full h-full drop-shadow-2xl hover:scale-[1.02] transition-transform duration-300">
-                                    <Image
-                                        src={STAND_IMAGES[currentIndex]}
-                                        alt={`Special Menu ${currentIndex + 1}`}
-                                        fill
-                                        className="object-contain"
-                                        priority
-                                    />
-
-                                    {/* Click hint */}
-                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap backdrop-blur-sm pointer-events-none">
-                                        Click to view menu
+                    {/* Slider Container - Polaroid Style */}
+                    <div className="relative w-full h-full cursor-pointer group perspective-1000 p-4 bg-white neo-border neo-shadow-lg rotate-2 hover:rotate-0 transition-all duration-300" onClick={openLightbox}>
+                        <div className="relative w-full h-full border-2 border-gray-100 bg-gray-50 overflow-hidden">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentIndex}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.4, ease: "circOut" }}
+                                    className="absolute inset-0 w-full h-full p-2"
+                                >
+                                    <div className="relative w-full h-full">
+                                        <Image
+                                            src={STAND_IMAGES[currentIndex]}
+                                            alt={`Special Menu ${currentIndex + 1}`}
+                                            fill
+                                            className="object-contain drop-shadow-md"
+                                            priority
+                                        />
                                     </div>
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {/* Click hint overlay */}
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="bg-pizza-yellow text-pizza-black font-bold px-6 py-2 rounded-full neo-border transform scale-90 group-hover:scale-100 transition-transform">
+                                    View Menu
                                 </div>
-                            </motion.div>
-                        </AnimatePresence>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Indicators */}
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex gap-2">
+                    <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-3">
                         {STAND_IMAGES.map((_, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => setCurrentIndex(idx)}
-                                className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex
+                                className={`w-4 h-4 rounded-full transition-all duration-300 border-2 border-pizza-black ${idx === currentIndex
                                     ? 'bg-pizza-yellow scale-125'
-                                    : 'bg-white/30 hover:bg-white/50'
+                                    : 'bg-pizza-white hover:bg-pizza-cream'
                                     }`}
                                 aria-label={`Go to slide ${idx + 1}`}
                             />
