@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -126,9 +127,9 @@ export default function Hero() {
                     Where every slice tells a story 🍕
                 </p> */}
             {/* Order Now Button - Bottom Right */}
-            <button className="neo-button bg-pizza-red text-white px-12 py-4 text-xl fixed bottom-8 right-8 z-50 hover:scale-105 transition-transform">
-                Order Now
-            </button>
+            <Link href="/book" className="neo-button bg-pizza-red text-white px-12 py-4 text-xl fixed bottom-8 right-8 z-50 hover:scale-105 transition-transform">
+                Book Now
+            </Link>
             {/* </div> */}
 
             {/* Bhature Image */}

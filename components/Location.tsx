@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 const locations = [
     {
         name: 'Downtown',
@@ -58,9 +60,9 @@ export default function Location() {
                     <p className="text-2xl font-body text-pizza-black mb-8">
                         Order now and get your pizza delivered hot & fresh!
                     </p>
-                    <button className="neo-button bg-pizza-red text-white px-16 py-5 text-2xl">
-                        ORDER ONLINE
-                    </button>
+                    <Link href="/book" className="neo-button bg-pizza-red text-white px-16 py-5 text-2xl inline-block">
+                        Book Now
+                    </Link>
                 </div>
             </div>
         </section>

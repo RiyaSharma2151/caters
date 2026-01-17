@@ -153,7 +153,7 @@ export default function Navigation() {
                         onClick={(e) => handleNavClick(e, '#location')}
                         className={getClass('#location')}
                     >
-                        Reservation
+                        Contact Us
                     </Link>
                 </div>
             </div>

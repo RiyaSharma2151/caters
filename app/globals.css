@@ -27,6 +27,10 @@
     font-family: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
+  .font-handwriting {
+    font-family: var(--font-caveat), cursive;
+  }
+
   html {
     scroll-behavior: smooth;
   }

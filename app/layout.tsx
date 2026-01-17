@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { Outfit, Space_Grotesk, Caveat } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -12,6 +12,12 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["400", "600", "700"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${outfit.variable} ${spaceGrotesk.variable} ${caveat.variable} antialiased`}
       >
         {children}
       </body>
