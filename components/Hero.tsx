@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,9 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
     const pizzaRef = useRef<HTMLDivElement>(null);
-    const basilRef = useRef<HTMLDivElement>(null);
     const oliveRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLDivElement>(null);
+    const textRef1 = useRef<HTMLDivElement>(null); // First marquee line
+    const textRef2 = useRef<HTMLDivElement>(null); // Second marquee line
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -27,17 +28,7 @@ export default function Hero() {
                 },
             });
 
-            // Floating basil
-            gsap.to(basilRef.current, {
-                y: 200,
-                rotation: 180,
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                },
-            });
+
 
             // Floating olives
             gsap.to(oliveRef.current, {
@@ -51,14 +42,25 @@ export default function Hero() {
                 },
             });
 
-            // Background text parallax
-            gsap.to(textRef.current, {
-                y: 100,
+            // Background text marquee effect - First line moves right
+            gsap.to(textRef1.current, {
+                x: 500, // Move right
                 scrollTrigger: {
                     trigger: heroRef.current,
                     start: 'top top',
                     end: 'bottom top',
-                    scrub: 0.5,
+                    scrub: 0.8,
+                },
+            });
+
+            // Background text marquee effect - Second line moves left
+            gsap.to(textRef2.current, {
+                x: -500, // Move left
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 0.8,
                 },
             });
         });
@@ -66,42 +68,80 @@ export default function Hero() {
         return () => ctx.revert();
     }, []);
 
+    // Mouse movement tracking
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!heroRef.current) return;
+
+            const rect = heroRef.current.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+            const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+
+            setMousePosition({ x, y });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
     return (
         <section
+            id="home"
             ref={heroRef}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pizza-yellow pt-24"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-radial from-[#ffd60a] via-[#ffb703] to-[#fb8500] pt-24"
+            style={{
+                background: 'radial-gradient(circle at center, #ffd60a 0%, #ffb703 50%, #fb8500 100%)'
+            }}
         >
-            {/* Background Text */}
-            <div
-                ref={textRef}
-                className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none"
-            >
-                <h1 className="text-[20vw] font-heading font-black text-pizza-black whitespace-nowrap">
-                    PIZZA PIZZA PIZZA
-                </h1>
+            {/* Background Text - Dual Marquee */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center opacity-10 pointer-events-none overflow-hidden gap-8">
+                {/* First line - moves right */}
+                <div
+                    ref={textRef1}
+                    className="w-full flex items-center justify-center"
+                >
+                    <h1 className="text-[15vw] font-heading font-black text-pizza-black whitespace-nowrap">
+                        APNA FOOD • APNA FOOD • APNA FOOD • APNA FOOD •
+                    </h1>
+                </div>
+
+                {/* Second line - moves left */}
+                <div
+                    ref={textRef2}
+                    className="w-full flex items-center justify-center"
+                >
+                    <h1 className="text-[15vw] font-heading font-black text-pizza-black whitespace-nowrap">
+                        APNA FOOD • APNA FOOD • APNA FOOD • APNA FOOD •
+                    </h1>
+                </div>
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 text-center px-6">
+            {/* <div className="relative z-10 text-center px-6">
                 <h1 className="text-7xl md:text-9xl font-heading font-black mb-6 leading-none">
                     <span className="block text-pizza-black">WELCOME TO</span>
                     <span className="block text-pizza-red mt-2">SLICE TOWN</span>
                 </h1>
                 <p className="text-2xl md:text-3xl font-body font-bold text-pizza-black max-w-2xl mx-auto mb-8">
                     Where every slice tells a story 🍕
-                </p>
-                <button className="neo-button bg-pizza-red text-white px-12 py-4 text-xl">
-                    Order Now
-                </button>
-            </div>
+                </p> */}
+            {/* Order Now Button - Bottom Right */}
+            <button className="neo-button bg-pizza-red text-white px-12 py-4 text-xl fixed bottom-8 right-8 z-50 hover:scale-105 transition-transform">
+                Order Now
+            </button>
+            {/* </div> */}
 
-            {/* Pizza Image */}
+            {/* Bhature Image */}
             <div
                 ref={pizzaRef}
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] pointer-events-none"
+                style={{
+                    transform: `translate(calc(-50% + ${mousePosition.x * 40}px), ${mousePosition.y * 40}px)`,
+                    transition: 'transform 0.2s ease-out',
+                }}
             >
                 <Image
-                    src="/images/hero-pizza.png"
+                    src="/images/bhature.png"
                     alt="Delicious pizza slice"
                     fill
                     className="object-contain"
@@ -109,27 +149,20 @@ export default function Hero() {
                 />
             </div>
 
-            {/* Floating Basil */}
-            <div
-                ref={basilRef}
-                className="absolute top-32 right-20 w-32 h-32 pointer-events-none animate-float"
-            >
-                <Image
-                    src="/images/basil.png"
-                    alt="Fresh basil"
-                    fill
-                    className="object-contain"
-                />
-            </div>
 
-            {/* Floating Olives */}
+
+            {/* Floating G */}
             <div
                 ref={oliveRef}
                 className="absolute top-48 left-20 w-24 h-24 pointer-events-none animate-float"
-                style={{ animationDelay: '0.5s' }}
+                style={{
+                    animationDelay: '0.5s',
+                    transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`,
+                    transition: 'transform 0.4s ease-out',
+                }}
             >
                 <Image
-                    src="/images/olives.png"
+                    src="/images/g.png"
                     alt="Black olives"
                     fill
                     className="object-contain"
