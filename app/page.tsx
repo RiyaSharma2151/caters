@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Story from '@/components/Story';
 import Gallery from '@/components/Gallery';
+import MenuStand from '@/components/MenuStand';
 import Menu from '@/components/Menu';
 import FeaturedPicks from '@/components/FeaturedPicks';
 import Testimonials from '@/components/Testimonials';
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <Story />
       <Gallery />
+      <MenuStand />
       <Menu />
       <FeaturedPicks />
       <Testimonials />

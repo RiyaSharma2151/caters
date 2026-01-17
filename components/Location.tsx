@@ -21,12 +21,12 @@ const locations = [
 
 export default function Location() {
     return (
-        <section id="location" className="py-32 px-6 bg-pizza-red">
+        <section id="location" className="py-16 px-4 md:py-32 md:px-6 bg-pizza-red">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-6xl md:text-8xl font-heading font-black text-pizza-white mb-4 text-center">
+                <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black text-pizza-white mb-4 text-center">
                     VISIT US
                 </h2>
-                <p className="text-2xl font-body text-center mb-16 text-pizza-yellow">
+                <p className="text-lg md:text-2xl font-body text-center mb-8 md:mb-16 text-pizza-yellow">
                     Two locations to serve you! 📍
                 </p>
 
@@ -53,11 +53,11 @@ export default function Location() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="neo-border neo-shadow bg-pizza-yellow p-12 text-center">
-                    <h3 className="text-5xl md:text-7xl font-heading font-black text-pizza-black mb-4">
+                <div className="neo-border neo-shadow bg-pizza-yellow p-6 md:p-12 text-center">
+                    <h3 className="text-3xl md:text-5xl lg:text-7xl font-heading font-black text-pizza-black mb-4">
                         HUNGRY YET?
                     </h3>
-                    <p className="text-2xl font-body text-pizza-black mb-8">
+                    <p className="text-lg md:text-2xl font-body text-pizza-black mb-6 md:mb-8">
                         Book us for your next event and enjoy authentic Indian flavors!
                     </p>
                     <Link href="/book" className="neo-button bg-pizza-red text-white px-16 py-5 text-2xl inline-block">

@@ -104,8 +104,8 @@ export default function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="fixed top-6 left-0 right-0 z-50 bg-transparent pointer-events-none">
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between pointer-events-auto">
+        <nav className="fixed top-4 md:top-6 left-0 right-0 z-50 bg-transparent pointer-events-none">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between pointer-events-auto">
                 {/* Left Menu - Desktop */}
                 <div className="hidden md:flex gap-4">
                     <Link
@@ -188,7 +188,7 @@ export default function Navigation() {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-pizza-black/95 z-40 transition-transform duration-300 md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed inset-0 bg-[#0A0A0A]/95 backdrop-blur-sm z-40 transition-transform duration-300 md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col items-center justify-center h-full gap-8 pointer-events-auto">
                     <Link
                         href="/"
@@ -218,6 +218,17 @@ export default function Navigation() {
                     >
                         Contact Us
                     </Link>
+
+                    {/* Close Button Inside Menu (Extra backup) */}
+                    <button
+                        onClick={() => setIsMenuOpen(false)}
+                        className="absolute top-6 right-6 p-2 text-pizza-white hover:text-pizza-red transition-colors"
+                    >
+                        <span className="sr-only">Close Menu</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </nav>

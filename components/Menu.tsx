@@ -34,16 +34,35 @@ export default function Menu() {
         const ctx = gsap.context(() => {
             const cards = menuRef.current?.querySelectorAll('.menu-card');
 
-            gsap.from(cards || [], {
-                y: 80,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.6,
-                scrollTrigger: {
-                    trigger: menuRef.current,
-                    start: 'top 70%',
-                    toggleActions: 'play none none reverse',
-                },
+            // Mobile vs Desktop Animation
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 768px)", () => {
+                gsap.from(cards || [], {
+                    y: 80,
+                    opacity: 0,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: menuRef.current,
+                        start: 'top 70%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+            });
+
+            mm.add("(max-width: 767px)", () => {
+                gsap.from(cards || [], {
+                    y: 30, // Reduced movement for mobile
+                    opacity: 0,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: menuRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
             });
         });
 
@@ -54,16 +73,16 @@ export default function Menu() {
         <>
             <div className="checkered-bg h-16 w-full"></div>
 
-            <section id="menu" className="py-32 px-6 bg-pizza-black text-pizza-white">
+            <section id="menu" className="py-16 px-4 md:py-32 md:px-6 bg-pizza-black text-pizza-white">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-6xl md:text-8xl font-heading font-black mb-4 text-center">
+                    <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black mb-4 text-center">
                         CATERING MENU
                     </h2>
-                    <p className="text-2xl font-body text-center mb-16 text-pizza-yellow">
+                    <p className="text-lg md:text-2xl font-body text-center mb-8 md:mb-16 text-pizza-yellow">
                         Authentic Indian Flavors 🍛
                     </p>
 
-                    <div ref={menuRef} className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div ref={menuRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                         {/* Curries */}
                         <div className="menu-card neo-border neo-shadow bg-pizza-green p-8">
                             <h3 className="text-4xl font-heading font-black mb-6 text-pizza-black">

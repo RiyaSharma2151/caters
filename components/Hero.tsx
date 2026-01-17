@@ -17,52 +17,101 @@ export default function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
+        const mm = gsap.matchMedia();
         const ctx = gsap.context(() => {
-            // Parallax effect for pizza
-            gsap.to(pizzaRef.current, {
-                y: 150,
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1,
-                },
+
+            // Desktop Animations
+            mm.add("(min-width: 768px)", () => {
+                // Parallax effect for pizza
+                gsap.to(pizzaRef.current, {
+                    y: 150,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1,
+                    },
+                });
+
+                // Floating olives
+                gsap.to(oliveRef.current, {
+                    y: 180,
+                    rotation: -120,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.2,
+                    },
+                });
+
+                // Background text - Large movement
+                gsap.to(textRef1.current, {
+                    x: 500,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.8,
+                    },
+                });
+
+                gsap.to(textRef2.current, {
+                    x: -500,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.8,
+                    },
+                });
             });
 
+            // Mobile Animations (Reduced movement)
+            mm.add("(max-width: 767px)", () => {
+                // Parallax effect for pizza - subtle
+                gsap.to(pizzaRef.current, {
+                    y: 50,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1,
+                    },
+                });
 
+                // Floating olives - subtle
+                gsap.to(oliveRef.current, {
+                    y: 60,
+                    rotation: -45,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.2,
+                    },
+                });
 
-            // Floating olives
-            gsap.to(oliveRef.current, {
-                y: 180,
-                rotation: -120,
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.2,
-                },
-            });
+                // Background text - Reduced movement to prevent crazy shifts
+                gsap.to(textRef1.current, {
+                    x: 100,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.8,
+                    },
+                });
 
-            // Background text marquee effect - First line moves right
-            gsap.to(textRef1.current, {
-                x: 500, // Move right
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.8,
-                },
-            });
-
-            // Background text marquee effect - Second line moves left
-            gsap.to(textRef2.current, {
-                x: -500, // Move left
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.8,
-                },
+                gsap.to(textRef2.current, {
+                    x: -100,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.8,
+                    },
+                });
             });
         });
 
@@ -127,7 +176,8 @@ export default function Hero() {
                     Where every slice tells a story 🍕
                 </p> */}
             {/* Order Now Button - Bottom Right */}
-            <Link href="/book" className="neo-button bg-pizza-red text-white px-12 py-4 text-xl fixed bottom-8 right-8 z-50 hover:scale-105 transition-transform">
+            {/* Order Now Button - Bottom Right */}
+            <Link href="/book" className="neo-button bg-pizza-red text-white px-8 py-3 text-lg md:px-12 md:py-4 md:text-xl fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 hover:scale-105 transition-transform">
                 Book Now
             </Link>
             {/* </div> */}
@@ -135,7 +185,7 @@ export default function Hero() {
             {/* Bhature Image */}
             <div
                 ref={pizzaRef}
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] pointer-events-none"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] md:w-[600px] md:h-[600px] pointer-events-none"
                 style={{
                     transform: `translate(calc(-50% + ${mousePosition.x * 40}px), ${mousePosition.y * 40}px)`,
                     transition: 'transform 0.2s ease-out',
@@ -155,7 +205,7 @@ export default function Hero() {
             {/* Floating G */}
             <div
                 ref={oliveRef}
-                className="absolute top-48 left-20 w-24 h-24 pointer-events-none animate-float"
+                className="absolute top-24 left-4 w-16 h-16 md:top-48 md:left-20 md:w-24 md:h-24 pointer-events-none animate-float"
                 style={{
                     animationDelay: '0.5s',
                     transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`,

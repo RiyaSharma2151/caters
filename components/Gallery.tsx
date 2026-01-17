@@ -21,18 +21,39 @@ export default function Gallery() {
         const ctx = gsap.context(() => {
             const polaroids = galleryRef.current?.querySelectorAll('.polaroid-item');
 
-            gsap.from(polaroids || [], {
-                y: 100,
-                opacity: 0,
-                rotation: 20,
-                stagger: 0.15,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: galleryRef.current,
-                    start: 'top 70%',
-                    end: 'top 30%',
-                    toggleActions: 'play none none reverse',
-                },
+            // Mobile vs Desktop Animation
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 768px)", () => {
+                gsap.from(polaroids || [], {
+                    y: 100,
+                    opacity: 0,
+                    rotation: 20,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: galleryRef.current,
+                        start: 'top 70%',
+                        end: 'top 30%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+            });
+
+            mm.add("(max-width: 767px)", () => {
+                gsap.from(polaroids || [], {
+                    y: 50,
+                    opacity: 0,
+                    rotation: 5,  // Reduced rotation for mobile
+                    stagger: 0.1,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: galleryRef.current,
+                        start: 'top 80%',
+                        end: 'top 30%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
             });
         });
 
@@ -40,9 +61,9 @@ export default function Gallery() {
     }, []);
 
     return (
-        <section className="py-32 px-6 bg-pizza-white">
+        <section className="py-16 px-4 md:py-32 md:px-6 bg-pizza-white">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-6xl md:text-8xl font-heading font-black text-pizza-black mb-16 text-center">
+                <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black text-pizza-black mb-8 md:mb-16 text-center">
                     PIZZA GALLERY
                 </h2>
 

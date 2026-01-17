@@ -14,18 +14,18 @@ export default function Testimonials() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="py-32 px-6 bg-pizza-white overflow-hidden">
+        <section className="py-16 px-4 md:py-32 md:px-6 bg-pizza-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-6xl md:text-8xl font-heading font-black text-pizza-black mb-4 text-center">
+                <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black text-pizza-black mb-4 text-center">
                     WALL OF FAME
                 </h2>
-                <p className="text-2xl font-body text-center mb-16 text-pizza-red">
+                <p className="text-lg md:text-2xl font-body text-center mb-8 md:mb-16 text-pizza-red">
                     Drag the notes around! 📌
                 </p>
 
                 <div
                     ref={containerRef}
-                    className="relative min-h-[600px] w-full flex flex-wrap justify-center content-center gap-8 p-12 bg-pizza-cream/50 rounded-3xl border-4 border-dashed border-pizza-black/20"
+                    className="relative min-h-[400px] md:min-h-[600px] w-full flex flex-wrap justify-center content-center gap-8 p-4 md:p-12 bg-pizza-cream/50 rounded-3xl border-4 border-dashed border-pizza-black/20"
                 >
                     {testimonials.map((testimonial, index) => (
                         <motion.div

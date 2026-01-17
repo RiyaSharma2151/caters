@@ -2,12 +2,12 @@
 
 export default function Footer() {
     return (
-        <footer id="contact" className="bg-pizza-black text-pizza-white py-16 px-6 border-t-4 border-pizza-yellow">
+        <footer id="contact" className="bg-pizza-black text-pizza-white py-12 px-4 md:py-16 md:px-6 border-t-4 border-pizza-yellow">
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
                     {/* Brand */}
                     <div>
-                        <h3 className="text-4xl font-heading font-black mb-4">
+                        <h3 className="text-3xl md:text-4xl font-heading font-black mb-4">
                             <span className="text-pizza-red">APNA</span>
                             <span className="text-pizza-white"> FOOD</span>
                         </h3>

@@ -25,12 +25,12 @@ const featuredPicks = [
 
 export default function FeaturedPicks() {
     return (
-        <section className="py-32 px-6 bg-pizza-cream">
+        <section className="py-16 px-4 md:py-32 md:px-6 bg-pizza-cream">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-6xl md:text-8xl font-heading font-black text-pizza-black mb-4 text-center">
+                <h2 className="text-4xl md:text-6xl lg:text-8xl font-heading font-black text-pizza-black mb-4 text-center">
                     FEATURED PICKS
                 </h2>
-                <p className="text-2xl font-body text-center mb-16 text-pizza-red">
+                <p className="text-lg md:text-2xl font-body text-center mb-8 md:mb-16 text-pizza-red">
                     Chef's Recommendations ⭐
                 </p>
 
