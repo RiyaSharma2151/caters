@@ -35,7 +35,7 @@ export default function Testimonials() {
                             whileHover={{ scale: 1.1, zIndex: 100, rotate: 0 }}
                             whileDrag={{ scale: 1.1, zIndex: 100, rotate: 0 }}
                             initial={{ rotate: testimonial.rotation, x: testimonial.x, y: testimonial.y }}
-                            className={`${testimonial.color} w-64 h-64 p-6 shadow-xl cursor-grab active:cursor-grabbing flex flex-col justify-between transform transition-shadow hover:shadow-2xl`}
+                            className={`${testimonial.color} w-full md:w-64 md:h-64 p-6 shadow-xl cursor-grab active:cursor-grabbing flex flex-col justify-between transform transition-shadow hover:shadow-2xl`}
                             style={{
                                 boxShadow: '5px 5px 15px rgba(0,0,0,0.2)',
                             }}

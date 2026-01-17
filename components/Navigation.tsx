@@ -100,11 +100,14 @@ export default function Navigation() {
         }
     };
 
+    // Mobile menu state
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return (
         <nav className="fixed top-6 left-0 right-0 z-50 bg-transparent pointer-events-none">
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between pointer-events-auto">
-                {/* Left Menu */}
-                <div className="flex gap-4">
+                {/* Left Menu - Desktop */}
+                <div className="hidden md:flex gap-4">
                     <Link
                         href="/"
                         onClick={(e) => handleNavClick(e, '#')}
@@ -126,7 +129,7 @@ export default function Navigation() {
                 <Link
                     href="/"
                     onClick={(e) => handleNavClick(e, '#')}
-                    className="absolute left-1/2 -translate-x-1/2 top-2 hover:scale-105 transition-transform duration-300"
+                    className="absolute left-1/2 -translate-x-1/2 top-2 hover:scale-105 transition-transform duration-300 md:block hidden"
                 >
                     <div className="w-24 h-24 rounded-full bg-pizza-black border-4 border-pizza-yellow flex flex-col items-center justify-center -rotate-6 shadow-xl relative z-50">
                         <span className="font-heading font-black text-pizza-yellow text-xl leading-none transform -rotate-6">
@@ -138,8 +141,24 @@ export default function Navigation() {
                     </div>
                 </Link>
 
-                {/* Right Menu */}
-                <div className="flex gap-4">
+                {/* Mobile Logo (Visible only on mobile) */}
+                <Link
+                    href="/"
+                    onClick={(e) => handleNavClick(e, '#')}
+                    className="md:hidden block hover:scale-105 transition-transform duration-300"
+                >
+                    <div className="w-16 h-16 rounded-full bg-pizza-black border-2 border-pizza-yellow flex flex-col items-center justify-center -rotate-6 shadow-xl relative z-50">
+                        <span className="font-heading font-black text-pizza-yellow text-sm leading-none transform -rotate-6">
+                            Apna
+                        </span>
+                        <span className="font-heading font-black text-pizza-yellow text-sm leading-none transform -rotate-6">
+                            Food
+                        </span>
+                    </div>
+                </Link>
+
+                {/* Right Menu - Desktop */}
+                <div className="hidden md:flex gap-4">
                     <Link
                         href="#menu"
                         onClick={(e) => handleNavClick(e, '#menu')}
@@ -152,6 +171,50 @@ export default function Navigation() {
                         href="#location"
                         onClick={(e) => handleNavClick(e, '#location')}
                         className={getClass('#location')}
+                    >
+                        Contact Us
+                    </Link>
+                </div>
+
+                {/* Hamburger Button - Mobile */}
+                <button
+                    className="md:hidden pointer-events-auto neo-button bg-pizza-white w-12 h-12 flex flex-col items-center justify-center gap-1.5"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    <span className={`w-6 h-0.5 bg-pizza-black transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                    <span className={`w-6 h-0.5 bg-pizza-black transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`w-6 h-0.5 bg-pizza-black transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-pizza-black/95 z-40 transition-transform duration-300 md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className="flex flex-col items-center justify-center h-full gap-8 pointer-events-auto">
+                    <Link
+                        href="/"
+                        onClick={(e) => { handleNavClick(e, '#'); setIsMenuOpen(false); }}
+                        className="text-4xl font-heading font-black text-pizza-white hover:text-pizza-yellow transition-colors"
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        href="#about"
+                        onClick={(e) => { handleNavClick(e, '#about'); setIsMenuOpen(false); }}
+                        className="text-4xl font-heading font-black text-pizza-white hover:text-pizza-yellow transition-colors"
+                    >
+                        About us
+                    </Link>
+                    <Link
+                        href="#menu"
+                        onClick={(e) => { handleNavClick(e, '#menu'); setIsMenuOpen(false); }}
+                        className="text-4xl font-heading font-black text-pizza-white hover:text-pizza-yellow transition-colors"
+                    >
+                        Menu
+                    </Link>
+                    <Link
+                        href="#location"
+                        onClick={(e) => { handleNavClick(e, '#location'); setIsMenuOpen(false); }}
+                        className="text-4xl font-heading font-black text-pizza-white hover:text-pizza-yellow transition-colors"
                     >
                         Contact Us
                     </Link>
